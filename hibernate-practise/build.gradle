@@ -14,13 +14,15 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+
     // https://mvnrepository.com/artifact/hsqldb/hsqldb
     compile group: 'hsqldb', name: 'hsqldb', version: '1.8.0.10'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.1.Final'
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
 
 
 

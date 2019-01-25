@@ -1,13 +1,23 @@
 package com.srikanth.hibernate.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "EVENTS")
-public class Event {
+public class Event implements Serializable {
+
+    public Event() {
+    }
+
+    public Event(long eventId, String eventTitle, String eventDescription) {
+        this.eventId = eventId;
+        this.eventTitle = eventTitle;
+        this.eventDescription = eventDescription;
+    }
 
     @Id
     @Column(name = "EVENT_ID", unique = true, nullable = false)
@@ -57,8 +67,25 @@ public class Event {
                 Objects.equals(eventDescription, event.eventDescription);
     }
 
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(eventId, eventTitle, eventDescription);
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", eventTitle='" + eventTitle + '\'' +
+                ", eventDescription='" + eventDescription + '\'' +
+                "}";
     }
 }

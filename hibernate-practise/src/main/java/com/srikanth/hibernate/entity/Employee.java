@@ -1,6 +1,7 @@
 package com.srikanth.hibernate.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -8,7 +9,18 @@ import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEES")
-public class Employee {
+public class Employee implements Serializable {
+
+
+    public Employee() {
+    }
+
+    public Employee(String employeeId, String employeeName, String joiningDate, String emailId) {
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
+        this.joiningDate = joiningDate;
+        this.emailId = emailId;
+    }
 
     @Id
     @Column(name = "MID", unique = true, nullable = false, length = 100)
@@ -18,7 +30,7 @@ public class Employee {
     private String employeeName;
 
     // Using String to avoid extra validations. Confining to Hibernate ORM usage practise
-    @Column(name = "JOIN_DATE", unique = true, nullable = false, length = 15)
+    @Column(name = "JOIN_DATE", nullable = false, length = 15)
     private String joiningDate;
 
     @Column(name = "EMAIL_ID", unique = true, nullable = false, length = 200)
@@ -30,7 +42,7 @@ public class Employee {
             joinColumns = {@JoinColumn(name = "MID")},
             inverseJoinColumns = {@JoinColumn(name = "EVENT_ID")}
     )
-    Set<Event> events = new HashSet<>();
+    private Set<Event> events = new HashSet<>();
 
     public String getEmployeeId() {
         return employeeId;
@@ -78,5 +90,36 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(employeeId, employeeName, joiningDate, emailId);
+    }
+
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId='" + employeeId + '\'' +
+                ", employeeName='" + employeeName + '\'' +
+                ", joiningDate='" + joiningDate + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", events=" + events +
+                "}";
+    }
+
+    public String getEventTitles() {
+        final StringBuilder eventTitles = new StringBuilder();
+        Set<Event> empEvents = this.getEvents();
+        empEvents.forEach(event -> {
+                    eventTitles.append(event.getEventTitle());
+                    eventTitles.append(", ");
+                }
+        );
+        return eventTitles.toString();
     }
 }
