@@ -36,7 +36,7 @@ public class Employee implements Serializable {
     @Column(name = "EMAIL_ID", unique = true, nullable = false, length = 200)
     private String emailId;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "EMPLOYEES_EVENTS",
             joinColumns = {@JoinColumn(name = "MID")},

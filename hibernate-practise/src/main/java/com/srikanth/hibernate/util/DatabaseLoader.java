@@ -13,7 +13,7 @@ public class DatabaseLoader {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee("M100100", "Karthik Kumar", "2013-02-05", "karthik_kumar"));
         employees.add(new Employee("M100108", "Ramesh Kulkarni", "2013-02-05", "ramesh_kulkarni"));
-        employees.add(new Employee("M100189", "Rohit Agarwal M", "2013-03-22", "rohit_agarwal_m"));
+        employees.add(new Employee("M100189", "Mohan Agarwal M", "2013-03-22", "rohit_agarwal_m"));
         employees.add(new Employee("M101190", "Magesh Narayanan", "2013-03-22", "magesh_narayanan"));
         return employees;
     }
